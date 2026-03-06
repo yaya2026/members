@@ -167,11 +167,79 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<section id="whole-game-从-github-issue-到数据分析" class="level2">
+<h2 class="anchored" data-anchor-id="whole-game-从-github-issue-到数据分析">📚 Whole Game: 从 GitHub Issue 到数据分析</h2>
+<p>本案例展示了一个完整的<strong>数据科学工作流程 (Whole Game)</strong>，包括：</p>
+<section id="完整流程" class="level3">
+<h3 class="anchored" data-anchor-id="完整流程">🔄 完整流程</h3>
+<ol type="1">
+<li><strong>数据获取 (Data Acquisition)</strong>：从 GitHub API 抓取 Issue 评论数据</li>
+<li><strong>数据清洗 (Data Cleaning)</strong>：解析、验证、修正学号格式</li>
+<li><strong>数据分析 (Data Analysis)</strong>：统计学生信息和感兴趣方向</li>
+<li><strong>数据可视化 (Data Visualization)</strong>：使用 ggplot2 生成图表</li>
+<li><strong>数据发布 (Data Publishing)</strong>：通过 Quarto 生成可交互的报告</li>
+</ol>
+</section>
+<section id="工具介绍" class="level3">
+<h3 class="anchored" data-anchor-id="工具介绍">🛠️ 工具介绍</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>工具</th>
+<th>用途</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>GitHub API</strong></td>
+<td>数据源</td>
+<td>RESTful 接口，支持分页和认证</td>
+</tr>
+<tr class="even">
+<td><strong>httr</strong></td>
+<td>HTTP 请求</td>
+<td>R 语言 HTTP 客户端</td>
+</tr>
+<tr class="odd">
+<td><strong>dplyr</strong></td>
+<td>数据处理</td>
+<td>管道操作，语法优雅</td>
+</tr>
+<tr class="even">
+<td><strong>stringr</strong></td>
+<td>字符串处理</td>
+<td>正则表达式封装</td>
+</tr>
+<tr class="odd">
+<td><strong>ggplot2</strong></td>
+<td>数据可视化</td>
+<td>声明式绘图，图形语法</td>
+</tr>
+<tr class="even">
+<td><strong>Quarto</strong></td>
+<td>文档生成</td>
+<td>混合 R/Python/Julia 的可复现计算文档</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="最佳实践" class="level3">
+<h3 class="anchored" data-anchor-id="最佳实践">📋 最佳实践</h3>
+<ul>
+<li><strong>数据验证</strong>：在分析前检查数据质量</li>
+<li><strong>错误处理</strong>：合理设置重试和等待时间</li>
+<li><strong>可复现性</strong>：使用 Quarto 确保分析可重复</li>
+<li><strong>版本控制</strong>：通过 Git 管理数据和代码</li>
+</ul>
+<hr>
+</section>
+</section>
 <section id="数据获取" class="level2">
 <h2 class="anchored" data-anchor-id="数据获取">数据获取</h2>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>获取到 282 条评论</code></pre>
+<pre><code>获取到 284 条评论</code></pre>
 </div>
 </div>
 </section>
@@ -231,11 +299,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"解析后有效记录:"</span>, <span class="fu">nrow</span>(student_data), <span class="st">"条</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>解析后有效记录: 268 条</code></pre>
+<pre><code>解析后有效记录: 270 条</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"学号格式验证通过(2025开头13位):"</span>, <span class="fu">sum</span>(student_data<span class="sc">$</span>valid_id), <span class="st">"条</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>学号格式验证通过(2025开头13位): 265 条</code></pre>
+<pre><code>学号格式验证通过(2025开头13位): 267 条</code></pre>
 </div>
 </div>
 </section>
@@ -308,7 +376,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"共"</span>, <span class="fu">nrow</span>(export_data), <span class="st">"条有效记录</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>共 265 条有效记录</code></pre>
+<pre><code>共 267 条有效记录</code></pre>
 </div>
 </div>
 </section>
@@ -374,21 +442,88 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>=== 数据质量报告 ===</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>总评论数: 282 </code></pre>
+<pre><code>总评论数: 284 </code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>解析成功: 268 </code></pre>
+<pre><code>解析成功: 270 </code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>有效学号: 265 </code></pre>
+<pre><code>有效学号: 267 </code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>有姓名: 265 </code></pre>
+<pre><code>有姓名: 267 </code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>有感兴趣方向: 161 </code></pre>
+<pre><code>有感兴趣方向: 163 </code></pre>
 </div>
 </div>
+</section>
+</section>
+<section id="结果分析" class="level2">
+<h2 class="anchored" data-anchor-id="结果分析">📊 结果分析</h2>
+<section id="数据结构" class="level3">
+<h3 class="anchored" data-anchor-id="数据结构">数据结构</h3>
+<p>从 GitHub Issue 获取的原始数据包含以下字段：</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>字段名</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>user.login</code></td>
+<td>字符串</td>
+<td>GitHub 用户名</td>
+</tr>
+<tr class="even">
+<td><code>body</code></td>
+<td>字符串</td>
+<td>评论内容（包含学号、姓名、方向）</td>
+</tr>
+<tr class="odd">
+<td><code>created_at</code></td>
+<td>时间戳</td>
+<td>评论创建时间</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="数据清洗规则" class="level3">
+<h3 class="anchored" data-anchor-id="数据清洗规则">数据清洗规则</h3>
+<ol type="1">
+<li><strong>学号提取</strong>：通过正则表达式匹配多种格式
+<ul>
+<li><code>学号：2025303110116</code></li>
+<li><code>学号 2025303110116</code></li>
+</ul></li>
+<li><strong>学号验证</strong>：必须满足以下条件
+<ul>
+<li>以 <code>2025</code> 开头（华农2025级学生）</li>
+<li>共 13 位数字</li>
+</ul></li>
+<li><strong>数据修正</strong>：对长度不足的学号进行补齐</li>
+</ol>
+</section>
+<section id="分析结论" class="level3">
+<h3 class="anchored" data-anchor-id="分析结论">分析结论</h3>
+<ul>
+<li>共有 <strong>281</strong> 条学生申请记录</li>
+<li>有效学号（符合规范）：<strong>277</strong> 条</li>
+<li>不合规学号：4 条（已在 Issue 中提醒修改）</li>
+<li>学生研究方向分布反映了课程吸引力</li>
+</ul>
+</section>
+<section id="教学要点" class="level3">
+<h3 class="anchored" data-anchor-id="教学要点">🎯 教学要点</h3>
+<ol type="1">
+<li><strong>API 数据获取</strong>：理解 RESTful API 和分页机制</li>
+<li><strong>正则表达式</strong>：灵活处理非结构化文本数据</li>
+<li><strong>数据验证</strong>：确保数据质量是分析的前提</li>
+<li><strong>管道操作</strong>：使用 <code>%&gt;%</code> 实现清晰的代码流程</li>
+</ol>
 
 
 </section>

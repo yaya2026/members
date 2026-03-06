@@ -167,13 +167,93 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="数据获取" class="level2">
-<h2 class="anchored" data-anchor-id="数据获取">数据获取</h2>
+<section id="whole-game-ai模型投票数据分析" class="level2">
+<h2 class="anchored" data-anchor-id="whole-game-ai模型投票数据分析">📚 Whole Game: AI模型投票数据分析</h2>
+<p>本案例展示了一个完整的<strong>数据科学工作流程 (Whole Game)</strong>，包括：</p>
+<section id="完整流程" class="level3">
+<h3 class="anchored" data-anchor-id="完整流程">🔄 完整流程</h3>
+<ol type="1">
+<li><strong>数据获取 (Data Acquisition)</strong>：从 GitHub Issue 抓取投票数据</li>
+<li><strong>数据解析 (Data Parsing)</strong>：从非结构化文本中提取模型排名</li>
+<li><strong>数据统计 (Data Statistics)</strong>：计算各模型的投票数和平均排名</li>
+<li><strong>数据可视化 (Data Visualization)</strong>：生成多种图表展示分析结果</li>
+<li><strong>数据发布 (Data Publishing)</strong>：通过 Quarto 生成可交互报告</li>
+</ol>
+</section>
+<section id="工具介绍" class="level3">
+<h3 class="anchored" data-anchor-id="工具介绍">🛠️ 工具介绍</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>工具</th>
+<th>用途</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>GitHub API</strong></td>
+<td>数据源</td>
+<td>RESTful 接口，支持分页</td>
+</tr>
+<tr class="even">
+<td><strong>httr</strong></td>
+<td>HTTP 请求</td>
+<td>R 语言 HTTP 客户端</td>
+</tr>
+<tr class="odd">
+<td><strong>dplyr</strong></td>
+<td>数据处理</td>
+<td>管道操作，数据转换</td>
+</tr>
+<tr class="even">
+<td><strong>stringr</strong></td>
+<td>文本处理</td>
+<td>正则表达式，模式匹配</td>
+</tr>
+<tr class="odd">
+<td><strong>ggplot2</strong></td>
+<td>可视化</td>
+<td>声明式绘图，图形语法</td>
+</tr>
+<tr class="even">
+<td><strong>tidyr</strong></td>
+<td>数据整形</td>
+<td>宽表/长表转换</td>
+</tr>
+<tr class="odd">
+<td><strong>Quarto</strong></td>
+<td>文档生成</td>
+<td>可复现计算文档</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="最佳实践" class="level3">
+<h3 class="anchored" data-anchor-id="最佳实践">📋 最佳实践</h3>
+<ul>
+<li><strong>模式识别</strong>：使用正则表达式从文本中提取结构化数据</li>
+<li><strong>数据整形</strong>：使用 tidyr 进行数据透视和重塑</li>
+<li><strong>多维度分析</strong>：从不同角度（票数、排名）分析数据</li>
+<li><strong>可视化原则</strong>：选择合适的图表类型展示数据</li>
+</ul>
+</section>
+<section id="什么是模型排序" class="level3">
+<h3 class="anchored" data-anchor-id="什么是模型排序">📖 什么是模型排序？</h3>
+<p>在本案例中，每位同学对5个AI模型进行排序（1-5名），这种数据结构常用于：</p>
+<ul>
+<li><strong>A/B测试结果分析</strong></li>
+<li><strong>用户偏好调查</strong></li>
+<li><strong>算法性能评估</strong></li>
+</ul>
+<p>分析方法包括： - <strong>频次统计</strong>：各选项被选为第1名的次数 - <strong>平均排名</strong>：计算每个选项的平均排名得分 - <strong>排名分布</strong>：分析各选项在不同排名位置的分布</p>
+<hr>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>获取到 255 条投票评论</code></pre>
+<pre><code>获取到 258 条投票评论</code></pre>
 </div>
 </div>
+</section>
 </section>
 <section id="数据解析" class="level2">
 <h2 class="anchored" data-anchor-id="数据解析">数据解析</h2>
@@ -230,7 +310,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"解析到"</span>, <span class="fu">nrow</span>(vote_data), <span class="st">"条模型排名记录</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>解析到 1185 条模型排名记录</code></pre>
+<pre><code>解析到 1190 条模型排名记录</code></pre>
 </div>
 </div>
 </section>
@@ -251,14 +331,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">head</span>(total_votes, <span class="dv">15</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           model   n
-1         Gemini 238
-2       DeepSeek 226
+1         Gemini 239
+2       DeepSeek 227
 3           Kimi 205
 4  Claude Sonnet 149
-5          GPT-5 143
+5          GPT-5 145
 6         GPT-4o 119
 7           Qwen  40
-8       Claude 3  18
+8       Claude 3  19
 9    Claude Opus  17
 10          Grok  13
 11           GLM   8
@@ -285,14 +365,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code># A tibble: 13 × 3
    model         avg_position total_votes
    &lt;chr&gt;                &lt;dbl&gt;       &lt;int&gt;
- 1 Gemini                1.88         238
- 2 GPT-5                 2.43         143
- 3 Claude 3              2.72          18
+ 1 Gemini                1.89         239
+ 2 GPT-5                 2.41         145
+ 3 Claude 3              2.79          19
  4 GPT-4o                2.84         119
  5 Claude Opus           3             17
  6 GLM                   3              8
  7 GPT-4                 3              8
- 8 DeepSeek              3.26         226
+ 8 DeepSeek              3.26         227
  9 Kimi                  3.45         205
 10 Grok                  3.62          13
 11 Claude Sonnet         3.64         149
@@ -421,7 +501,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"共"</span>, <span class="fu">nrow</span>(vote_export), <span class="st">"条投票记录</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>共 255 条投票记录</code></pre>
+<pre><code>共 258 条投票记录</code></pre>
 </div>
 </div>
 </section>
@@ -432,10 +512,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>=== 投票分析总结 ===</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>总投票人数: 255 </code></pre>
+<pre><code>总投票人数: 258 </code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>有效投票记录: 237 条</code></pre>
+<pre><code>有效投票记录: 238 条</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -443,11 +523,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          model   n
-1        Gemini 238
-2      DeepSeek 226
+1        Gemini 239
+2      DeepSeek 227
 3          Kimi 205
 4 Claude Sonnet 149
-5         GPT-5 143</code></pre>
+5         GPT-5 145</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -457,15 +537,91 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code># A tibble: 5 × 3
   model       avg_position total_votes
   &lt;chr&gt;              &lt;dbl&gt;       &lt;int&gt;
-1 Gemini              1.88         238
-2 GPT-5               2.43         143
-3 Claude 3            2.72          18
+1 Gemini              1.89         239
+2 GPT-5               2.41         145
+3 Claude 3            2.79          19
 4 GPT-4o              2.84         119
 5 Claude Opus         3             17</code></pre>
 </div>
 </div>
+</section>
+<section id="结果分析" class="level2">
+<h2 class="anchored" data-anchor-id="结果分析">📊 结果分析</h2>
+<section id="数据结构" class="level3">
+<h3 class="anchored" data-anchor-id="数据结构">数据结构</h3>
+<p>从 GitHub Issue 获取的投票数据需要解析为结构化格式：</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>user.login</code></td>
+<td>字符串</td>
+<td>GitHub 用户名</td>
+</tr>
+<tr class="even">
+<td><code>body</code></td>
+<td>字符串</td>
+<td>投票内容（包含1-5名模型排名）</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="原始数据格式示例" class="level3">
+<h3 class="anchored" data-anchor-id="原始数据格式示例">原始数据格式示例</h3>
+<pre><code>1. gpt-4o
+2. gemini-pro-2.5
+3. kimi-2.5
+4. deepseek-r1
+5. claude-sonnet-3-6</code></pre>
+</section>
+<section id="数据解析方法" class="level3">
+<h3 class="anchored" data-anchor-id="数据解析方法">数据解析方法</h3>
+<ol type="1">
+<li><strong>按行分割</strong>：将文本按换行符分割</li>
+<li><strong>提取排名</strong>：匹配以数字开头的行（<code>^\\d+[.．、]</code>）</li>
+<li><strong>模型识别</strong>：通过关键字匹配识别模型名称</li>
+<li><strong>标准化映射</strong>：将不同写法统一为标准名称</li>
+</ol>
+</section>
+<section id="分析维度" class="level3">
+<h3 class="anchored" data-anchor-id="分析维度">分析维度</h3>
+<ol type="1">
+<li><strong>总票数</strong>：各模型被选为第1名的次数</li>
+<li><strong>平均排名</strong>：各模型的平均排名得分（越低越好）</li>
+<li><strong>排名分布</strong>：各模型在不同排名位置的分布情况</li>
+</ol>
+</section>
+<section id="教学要点" class="level3">
+<h3 class="anchored" data-anchor-id="教学要点">🎯 教学要点</h3>
+<ol type="1">
+<li><strong>文本解析</strong>：从非结构化文本中提取结构化数据</li>
+<li><strong>模式匹配</strong>：使用正则表达式识别和提取信息</li>
+<li><strong>数据透视</strong>：使用 tidyr 进行数据整形</li>
+<li><strong>可视化选择</strong>：
+<ul>
+<li>柱状图：展示频次差异</li>
+<li>热力图：展示多维度分布</li>
+<li>箱线图：展示排名分布</li>
+</ul></li>
+<li><strong>排序分析</strong>：理解排序数据的特殊性</li>
+</ol>
+</section>
+<section id="扩展思考" class="level3">
+<h3 class="anchored" data-anchor-id="扩展思考">💡 扩展思考</h3>
+<ul>
+<li>如何处理模型名称的多种写法？</li>
+<li>如何计算加权排名？</li>
+<li>如何进行统计显著性检验？</li>
+</ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

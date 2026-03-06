@@ -210,7 +210,7 @@
 "Gemini","Claude Sonnet","GPT-5","GPT-5","Claude Sonnet"
 "Gemini","GPT-5","Claude Sonnet","DeepSeek","Claude Opus"
 "Claude Sonnet","DeepSeek","Gemini","Kimi","Kimi"
-"Gemini","Claude 3","Kimi","Gemini",NA
+"Gemini","Claude 3","Kimi","Gemini","Gemini"
 "Gemini","GPT-5","DeepSeek","Kimi",NA
 "Gemini","Claude 3","Kimi","DeepSeek",NA
 "Gemini","GPT-4o","Claude Sonnet","Claude Sonnet",NA
@@ -234,7 +234,7 @@
 "GPT-5","Gemini","Claude Sonnet","GPT-5",NA
 "Gemini","DeepSeek","DeepSeek","GPT-5",NA
 "GPT-5","Gemini","Gemini","DeepSeek",NA
-"Gemini","DeepSeek","Kimi",NA,NA
+"Gemini","DeepSeek","Kimi","Claude 3",NA
 "Gemini","GPT-5","DeepSeek",NA,NA
 "GPT-5","GPT-5","Gemini",NA,NA
 "GPT-4o","Claude Sonnet","DeepSeek",NA,NA
@@ -242,11 +242,14 @@
 "GPT-5","Gemini","DeepSeek",NA,NA
 "DeepSeek","Kimi","Kimi",NA,NA
 "Gemini","GPT-4o","Claude Sonnet",NA,NA
-"GPT-4","Kimi",NA,NA,NA
+"GPT-4","Kimi","DeepSeek",NA,NA
 "GPT-4o","Gemini",NA,NA,NA
 "Qwen","Gemini",NA,NA,NA
 "Gemini","DeepSeek",NA,NA,NA
 "GPT-4o","Gemini",NA,NA,NA
+"GPT-5","GPT-5",NA,NA,NA
+NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA
 NA,NA,NA,NA,NA
 NA,NA,NA,NA,NA
 NA,NA,NA,NA,NA
